@@ -22,9 +22,25 @@
   cursor: default;
 }
 
-.category-active{
-  display: block;
+.form-field{
+  /* grid-auto-rows: 3rem; */
 }
+
+.category:hover{
+  /* display: block; */
+  background: #9877fd;
+}
+
+.category-active{
+  /* display: block; */
+  background: #815df0;
+}
+
+.category-active:hover{
+  /* display: block; */
+  background: #815df0;
+}
+
 /* .todo-wrapper{
   border-bottom: none;
 }
