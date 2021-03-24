@@ -2,7 +2,9 @@ import createCategoryForm from "../components/categoryform"
 import removeChildren from "../partials/partials"
 import { setSelectedCategory, getCategories, selectedCategoryIndex } from '../components/categories'
 import Category from "../category"
-import createTodoForm from "../components/todoform"
+import createTodoForm, { prefillForm } from "../components/todoform"
+import Todo from "../todo"
+import displayHeaders, { updateSelectedTodo, selectedTodo, displayTodos } from "../components/todos"
 
 function addCategoryBtn() {
   const container = document.getElementById('container')
@@ -10,6 +12,16 @@ function addCategoryBtn() {
   btn.addEventListener('click', () => {
     removeChildren(container)
     createCategoryForm()
+  })
+}
+
+function addTodoBtn() {
+  const container = document.getElementById('container')
+  const btn = document.querySelector('.todo-list button')
+  btn.addEventListener('click', () => {
+    removeChildren(container)
+    createTodoForm()
+    submitTodo('create')
   })
 }
 
@@ -46,6 +58,29 @@ export function updateCheckbox(){
   })
 }
 
+export function submitTodo(type){
+  const btn = document.getElementById('todoSubmit')
+  btn.onclick = () => {
+    const container = document.getElementById('container')
+    const categories = JSON.parse(localStorage.getItem('categories'))
+    const inputs = document.querySelectorAll('.form input')
+    const description = document.querySelector('textarea')
+    const todo = new Todo(inputs[0].value, description.value, inputs[1].value, inputs[2].value)
+    if (type === 'update') {
+      categories[selectedCategoryIndex].todoList[selectedTodo] = todo
+    }
+    else if(type === 'create') {
+      categories[selectedCategoryIndex].todoList.push(todo)
+    }
+    localStorage.setItem('categories', JSON.stringify(categories))
+    removeChildren(container)
+    displayHeaders()
+    displayTodos()
+    addButtonFunctionalities()
+  } 
+  
+}
+
 export function deleteTodoBtn(){
   const categories = JSON.parse(localStorage.getItem('categories'))
   const dltBtns = document.querySelectorAll('.remove')
@@ -62,11 +97,13 @@ export function deleteTodoBtn(){
 export function editTodo() {
   const categories = JSON.parse(localStorage.getItem('categories'))
   const editBtns = document.querySelectorAll('.edit')
-  const todos = document.querySelectorAll('.todo-wrapper')
+  const todos = categories[selectedCategoryIndex].todoList
   editBtns.forEach((btn, index) => {
     btn.addEventListener('click', () => {
       removeChildren(document.getElementById('container'))
       createTodoForm()
+      prefillForm(todos[index])
+      updateSelectedTodo(index)
       // categories[selectedCategoryIndex].todoList.splice(index, 1)
       // localStorage.setItem('categories', JSON.stringify(categories))
       // todos[index].remove()
@@ -79,4 +116,5 @@ export default function addButtonFunctionalities() {
   updateCheckbox()
   deleteTodoBtn()
   editTodo()
+  addTodoBtn()
 }

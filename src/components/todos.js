@@ -1,5 +1,7 @@
 import { selectedCategoryIndex } from "./categories"
 
+export let selectedTodo = 0
+
 export default function displayHeaders(){
   const header = `
     <div class="py-2 grid grid-cols-3 max-w-2xl mx-auto">
@@ -9,6 +11,10 @@ export default function displayHeaders(){
     </div>
   `
   document.getElementById('container').insertAdjacentHTML('afterbegin', header)
+}
+
+export function updateSelectedTodo(index){
+  selectedTodo = index
 }
 
 export function displayTodos() {
@@ -27,6 +33,9 @@ export function displayTodos() {
       </div>
     `
   }
+  todos += `
+    <button class="bg-green-400 py-1 w-20 text-white rounded flex justify-center mx-auto">Add todo</button>
+  `
   const wrapper = document.getElementById('container').appendChild(document.createElement('div'))
   wrapper.classList.add('todo-list')
   wrapper.insertAdjacentHTML('afterbegin', todos)
