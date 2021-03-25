@@ -15,7 +15,7 @@ function addCategoryBtn() {
   })
 }
 
-function addTodoBtn() {
+export function addTodoBtn() {
   const container = document.getElementById('container')
   const btn = document.querySelector('.todo-list button')
   btn.addEventListener('click', () => {
@@ -104,9 +104,6 @@ export function editTodo() {
       createTodoForm()
       prefillForm(todos[index])
       updateSelectedTodo(index)
-      // categories[selectedCategoryIndex].todoList.splice(index, 1)
-      // localStorage.setItem('categories', JSON.stringify(categories))
-      // todos[index].remove()
     })
   })
 }
@@ -116,5 +113,5 @@ export default function addButtonFunctionalities() {
   updateCheckbox()
   deleteTodoBtn()
   editTodo()
-  addTodoBtn()
+  // addTodoBtn()
 }
