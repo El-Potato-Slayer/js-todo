@@ -1,8 +1,8 @@
-import createCategoryForm from "../components/categoryform"
-import removeChildren from "../partials/partials"
-import { setSelectedCategory, getCategories, selectedCategoryIndex } from '../components/categories'
+import createCategoryForm from "../partials/categoryform"
+import removeChildren from "./partials"
+import { setSelectedCategory, getCategories, selectedCategoryIndex, toggleSelectedCategory } from '../components/categories'
 import Category from "../category"
-import createTodoForm, { prefillForm } from "../components/todoform"
+import createTodoForm, { prefillForm } from "../partials/todoform"
 import Todo from "../todo"
 import displayHeaders, { updateSelectedTodo, selectedTodo, displayTodos } from "../components/todos"
 
@@ -35,12 +35,14 @@ export function createCategory(){
     const newCat = new Category(catName.value)
     categories.push(newCat)
     localStorage.setItem('categories', JSON.stringify(categories))
-    let catList = document.querySelectorAll('.category')
-    setSelectedCategory(categories.count - 1)
+    setSelectedCategory(categories.length)
     const catLinks = document.querySelector('.cat-links')
     removeChildren(catLinks)
     catLinks.insertAdjacentHTML('afterbegin', getCategories())
-    
+    toggleSelectedCategory()
+    displayHeaders()
+    displayTodos()
+    addTodoBtn()
   }
 }
 
@@ -84,28 +86,32 @@ export function submitTodo(type){
 export function deleteTodoBtn(){
   const categories = JSON.parse(localStorage.getItem('categories'))
   const dltBtns = document.querySelectorAll('.remove')
-  const todos = document.querySelectorAll('.todo-wrapper')
-  dltBtns.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      categories[selectedCategoryIndex].todoList.splice(index, 1)
-      localStorage.setItem('categories', JSON.stringify(categories))
-      todos[index].remove()
+  if (categories.length !== 0) {
+    const todos = document.querySelectorAll('.todo-wrapper')
+    dltBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        categories[selectedCategoryIndex].todoList.splice(index, 1)
+        localStorage.setItem('categories', JSON.stringify(categories))
+        todos[index].remove()
+      })
     })
-  })
+  }
 }
 
 export function editTodo() {
   const categories = JSON.parse(localStorage.getItem('categories'))
   const editBtns = document.querySelectorAll('.edit')
-  const todos = categories[selectedCategoryIndex].todoList
-  editBtns.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      removeChildren(document.getElementById('container'))
-      createTodoForm()
-      prefillForm(todos[index])
-      updateSelectedTodo(index)
+  if (categories.length !== 0) {
+    const todos = categories[selectedCategoryIndex].todoList
+    editBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        removeChildren(document.getElementById('container'))
+        createTodoForm()
+        prefillForm(todos[index])
+        updateSelectedTodo(index)
+      })
     })
-  })
+  }
 }
 
 export default function addButtonFunctionalities() {
@@ -113,5 +119,4 @@ export default function addButtonFunctionalities() {
   updateCheckbox()
   deleteTodoBtn()
   editTodo()
-  // addTodoBtn()
 }

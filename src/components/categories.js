@@ -1,4 +1,4 @@
-import removeChildren from "../partials/partials";
+import removeChildren from "../helpers/partials";
 import displayHeaders, { displayAllTodos, displayTodos } from "./todos";
 import addButtonFunctionalities, { addTodoBtn } from '../helpers/buttonshelper';
 
@@ -22,8 +22,10 @@ export default function createSidebar() {
 export function getCategories() {
   const categories = JSON.parse(localStorage.getItem('categories'))
   let category = '<a class="category py-1 px-4 cursor-pointer">All</a>'
-  for (let i = 0; i < categories.length; i+=1) {
-    category += `<a class="category py-1 px-4 cursor-pointer">${categories[i].name}</a>`
+  if (categories) {
+    for (let i = 0; i < categories.length; i+=1) {
+      category += `<a class="category py-1 px-4 cursor-pointer">${categories[i].name}</a>`
+    }
   }
   return category
 }
@@ -34,7 +36,7 @@ export function setSelectedCategory(index) {
 
 export function toggleSelectedCategory() {
   const categories = document.querySelectorAll('.category')
-  categories[0].classList.add('category-active')
+  categories[selectedCategoryIndex].classList.add('category-active')
   categories.forEach((category, index) => {
     category.addEventListener('click', () => {
       const container = document.getElementById('container')
@@ -59,5 +61,6 @@ function displayCategoryTodos(index) {
     displayTodos()
     addTodoBtn()
   }
+  
   addButtonFunctionalities()
 }
