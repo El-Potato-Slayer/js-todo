@@ -1,5 +1,5 @@
-import addButtonFunctionalities, { addTodoBtn } from "../helpers/buttonshelper"
-import removeChildren from "../helpers/partials"
+import addButtonFunctionalities, { addTodoBtn } from "./buttonshelper"
+import removeChildren from "./shared"
 import { selectedCategoryIndex } from "./categories"
 
 export let selectedTodo = 0

@@ -1,10 +1,11 @@
 import createCategoryForm from "../partials/categoryform"
-import removeChildren from "./partials"
-import { setSelectedCategory, getCategories, selectedCategoryIndex, toggleSelectedCategory } from '../components/categories'
+import removeChildren from "./shared"
+import { setSelectedCategory, getCategories, selectedCategoryIndex, toggleSelectedCategory } from './categories'
 import Category from "../category"
 import createTodoForm, { prefillForm } from "../partials/todoform"
 import Todo from "../todo"
-import displayHeaders, { updateSelectedTodo, selectedTodo, displayTodos } from "../components/todos"
+import displayHeaders, { updateSelectedTodo, selectedTodo, displayTodos } from "./todos"
+import todoList from "../components/todolist"
 
 function addCategoryBtn() {
   const container = document.getElementById('container')
@@ -40,8 +41,7 @@ export function createCategory(){
     catLinks.insertAdjacentHTML('afterbegin', getCategories())
     setSelectedCategory(categories.length - 1)
     toggleSelectedCategory()
-    displayHeaders()
-    displayTodos()
+    todoList()
     addTodoBtn()
   }
 }
@@ -76,9 +76,7 @@ export function submitTodo(type){
     }
     localStorage.setItem('categories', JSON.stringify(categories))
     removeChildren(container)
-    displayHeaders()
-    displayTodos()
-    addButtonFunctionalities()
+    todoList()
   } 
   
 }

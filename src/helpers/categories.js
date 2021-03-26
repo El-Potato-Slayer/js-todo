@@ -1,6 +1,6 @@
-import removeChildren from "../helpers/partials";
+import removeChildren from "./shared";
 import displayHeaders, { displayAllTodos, displayTodos } from "./todos";
-import addButtonFunctionalities, { addTodoBtn } from '../helpers/buttonshelper';
+import addButtonFunctionalities, { addTodoBtn } from './buttonshelper';
 
 export let selectedCategoryIndex = 0; 
 
