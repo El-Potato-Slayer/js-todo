@@ -1,8 +1,68 @@
-import removeChildren from "./shared";
-import displayHeaders, { displayAllTodos, displayTodos } from "./todos";
-import addButtonFunctionalities, { addTodoBtn } from './buttonshelper';
+import createCategoryForm, { createCategory } from '../partials/categoryform';
+import removeChildren from './shared';
 
-export let selectedCategoryIndex = 0; 
+// import displayHeaders, { displayAllTodos, displayTodos } from "./todos";
+// import addButtonFunctionalities from './buttonshelper';
+
+let selectedCategoryIndex = 0;
+
+export function getCategories() {
+  const categories = JSON.parse(localStorage.getItem('categories'));
+  let category = '';
+  if (categories) {
+    for (let i = 0; i < categories.length; i += 1) {
+      category += `<a class="category py-1 px-4 cursor-pointer">${categories[i].name}</a>`;
+    }
+  }
+  return category;
+}
+
+export function toggleSelectedCategory() {
+  const categories = document.querySelectorAll('.category');
+  if (categories.length > 0) {
+    categories[selectedCategoryIndex].classList.add('category-active');
+    categories.forEach((category) => {
+      category.addEventListener('click', () => {
+        const container = document.getElementById('container');
+        categories.forEach(cat => {
+          cat.classList.remove('category-active');
+          removeChildren(container);
+        });
+        category.classList.add('category-active');
+        // displayHeaders();
+        // displayCategoryTodos(index);
+      });
+    });
+  }
+}
+
+export function setSelectedCategory(index) {
+  selectedCategoryIndex = index;
+}
+
+export function getSelectedCategory() {
+  return selectedCategoryIndex;
+}
+
+function addCategoryBtn() {
+  const container = document.getElementById('container');
+  const btn = document.querySelector('nav button');
+  btn.addEventListener('click', () => {
+    removeChildren(container);
+    createCategoryForm();
+    const submit = document.getElementById('submitCategory');
+    submit.onclick = () => {
+      const catName = document.getElementById('categoryName');
+      const categories = JSON.parse(localStorage.getItem('categories'));
+      createCategory(categories, catName);
+      const catLinks = document.querySelector('.cat-links');
+      removeChildren(catLinks);
+      catLinks.insertAdjacentHTML('afterbegin', getCategories());
+      setSelectedCategory(categories.length - 1);
+      toggleSelectedCategory();
+    };
+  });
+}
 
 export default function createSidebar() {
   const sidebar = `
@@ -12,50 +72,19 @@ export default function createSidebar() {
         ${getCategories()}
       </div
     </aside>
-  `
-  const container =  document.getElementById('container')
-  container.insertAdjacentHTML('beforebegin', sidebar)
+  `;
+  const container = document.getElementById('container');
+  container.insertAdjacentHTML('beforebegin', sidebar);
 
-  toggleSelectedCategory()
+  toggleSelectedCategory();
+  // addButtonFunctionalities();
+  addCategoryBtn();
 }
 
-export function getCategories() {
-  const categories = JSON.parse(localStorage.getItem('categories'))
-  let category = ''
-  if (categories) {
-    for (let i = 0; i < categories.length; i+=1) {
-      category += `<a class="category py-1 px-4 cursor-pointer">${categories[i].name}</a>`
-    }
-  }
-  return category
-}
 
-export function setSelectedCategory(index) {
-  selectedCategoryIndex = index
-}
-
-export function toggleSelectedCategory() {
-  const categories = document.querySelectorAll('.category')
-  if (categories.length > 0) {
-    categories[selectedCategoryIndex].classList.add('category-active')
-    categories.forEach((category, index) => {
-      category.addEventListener('click', () => {
-        const container = document.getElementById('container')
-        categories.forEach(cat => {
-          cat.classList.remove('category-active')
-          removeChildren(container);
-        })
-        category.classList.add('category-active')
-        displayHeaders()
-        displayCategoryTodos(index)
-      })
-    })
-  }
-}
-
-function displayCategoryTodos(index) {
-  selectedCategoryIndex = index 
-  displayTodos()
-  addTodoBtn()
-  addButtonFunctionalities()
-}
+// function displayCategoryTodos(index) {
+//   selectedCategoryIndex = index;
+//   // displayTodos()
+//   // addTodoBtn()
+//   addButtonFunctionalities();
+// }

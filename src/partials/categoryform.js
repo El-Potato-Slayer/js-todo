@@ -1,4 +1,7 @@
-import { createCategory } from "../helpers/buttonshelper"
+// import { createCategory } from '../helpers/buttonshelper';
+
+import removeChildren from '../helpers/shared';
+import Category from '../category';
 
 export default function createCategoryForm() {
   const form = `
@@ -10,9 +13,14 @@ export default function createCategoryForm() {
       </fieldset>
       <button id="submitCategory" class="bg-green-400 mt-4 text-white py-1 w-24 mx-auto rounded">Create</button>
     </section>
-  `
-  document.getElementById('container').insertAdjacentHTML('afterbegin', form)
-  createCategory()
+  `;
+  document.getElementById('container').insertAdjacentHTML('afterbegin', form);
 }
 
-
+export function createCategory(categories, category) {
+  const container = document.getElementById('container');
+  removeChildren(container);
+  const newCat = new Category(category.value);
+  categories.push(newCat);
+  localStorage.setItem('categories', JSON.stringify(categories));
+}

@@ -1,21 +1,22 @@
-import createSidebar from "./helpers/categories";
-import displayHeaders, { displayAllTodos, displayTodos } from './helpers/todos';
-import addButtonFunctionalities from './helpers/buttonshelper';
-import { welcome } from "./partials/welcome";
-import sideBar from "./components/sdebar";
-import todoList from "./components/todolist";
+// import createSidebar from './helpers/categories';
+// import displayHeaders, { displayAllTodos, displayTodos } from './helpers/todos';
+// import addButtonFunctionalities from './helpers/buttonshelper';
+// import { welcome } from './partials/welcome';
+import sideBar from './components/sdebar';
+// import todoList from './components/todolist';
 
-if (!localStorage['categories']) {
-  localStorage.setItem('categories', JSON.stringify([]))
+if (!localStorage.categories) {
+  localStorage.setItem('categories', JSON.stringify([]));
 }
 
-if (JSON.parse(localStorage.getItem('categories')).length === 0) {
-  welcome()
-}
-else{
-  todoList()
-}
+// if (JSON.parse(localStorage.getItem('categories')).length === 0) {
+//   welcome();
+// } else {
+//   todoList();
+// }
 
-sideBar()
+sideBar();
 
-addButtonFunctionalities()
+// addButtonFunctionalities();
+// onFunctionalities()
+// onFunctionalities()

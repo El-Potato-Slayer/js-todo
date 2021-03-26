@@ -1,5 +1,5 @@
-import createSidebar from "../helpers/categories";
+import createSidebar from '../helpers/categories';
 
-export default function sideBar(){
+export default function sideBar() {
   createSidebar();
 }
