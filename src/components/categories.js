@@ -21,7 +21,7 @@ export default function createSidebar() {
 
 export function getCategories() {
   const categories = JSON.parse(localStorage.getItem('categories'))
-  let category = '<a class="category py-1 px-4 cursor-pointer">All</a>'
+  let category = ''
   if (categories) {
     for (let i = 0; i < categories.length; i+=1) {
       category += `<a class="category py-1 px-4 cursor-pointer">${categories[i].name}</a>`
@@ -36,31 +36,26 @@ export function setSelectedCategory(index) {
 
 export function toggleSelectedCategory() {
   const categories = document.querySelectorAll('.category')
-  categories[selectedCategoryIndex].classList.add('category-active')
-  categories.forEach((category, index) => {
-    category.addEventListener('click', () => {
-      const container = document.getElementById('container')
-      categories.forEach(cat => {
-        cat.classList.remove('category-active')
-        removeChildren(container);
+  if (categories.length > 0) {
+    categories[selectedCategoryIndex].classList.add('category-active')
+    categories.forEach((category, index) => {
+      category.addEventListener('click', () => {
+        const container = document.getElementById('container')
+        categories.forEach(cat => {
+          cat.classList.remove('category-active')
+          removeChildren(container);
+        })
+        category.classList.add('category-active')
+        displayHeaders()
+        displayCategoryTodos(index)
       })
-      category.classList.add('category-active')
-      displayHeaders()
-      displayCategoryTodos(index)
     })
-  })
+  }
 }
 
 function displayCategoryTodos(index) {
-  if (index === 0) {
-    selectedCategoryIndex = index
-    displayAllTodos()
-  }
-  else {
-    selectedCategoryIndex = index - 1
-    displayTodos()
-    addTodoBtn()
-  }
-  
+  selectedCategoryIndex = index 
+  displayTodos()
+  addTodoBtn()
   addButtonFunctionalities()
 }

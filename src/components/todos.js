@@ -19,32 +19,6 @@ export function updateSelectedTodo(index){
   selectedTodo = index
 }
 
-export function displayAllTodos(){
-  let categories = JSON.parse(localStorage.getItem('categories'))
-  let todos = ''
-  if (categories) {
-    for (let i = 0; i < categories.length; i++) {
-      for (let j = 0; j < categories[i].todoList.length; j++) {
-        let todo = categories[i].todoList[j]
-        todos += `
-          <div class="todo-wrapper border-gray-400 border py-2 grid grid-cols-3 items-center max-w-2xl mx-auto my-4 relative">
-            <p class="justify-self-center">${todo.title}</p>
-            <p class="justify-self-center">${todo.dueDate}</p>
-            <div class="justify-self-center">
-              <i class="edit material-icons mx-2 text-blue-400 cursor-pointer align-middle">mode</i><i class="remove material-icons mx-2 text-red-400 cursor-pointer align-middle">delete</i>
-            </div>
-            <input type="checkbox" class="absolute todo-chkbox"/>
-          </div>
-        `
-      }
-    }
-  }
-  todos += `<p class="text-gray-600 text-center">Create or select a category to start adding your tasks</p>`
-  const wrapper = document.getElementById('container').appendChild(document.createElement('div'))
-  wrapper.classList.add('todo-list')
-  wrapper.insertAdjacentHTML('afterbegin', todos)
-}
-
 export function displayTodos() {
   let categories = JSON.parse(localStorage.getItem('categories'))
   let todos = ''
