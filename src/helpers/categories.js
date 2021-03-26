@@ -1,5 +1,8 @@
 import createCategoryForm, { createCategory } from '../partials/categoryform';
+// import addButtonFunctionalities from './buttonshelper';
 import removeChildren from './shared';
+import todoList from '../components/todolist';
+// import displayHeaders from './todos';
 
 // import displayHeaders, { displayAllTodos, displayTodos } from "./todos";
 // import addButtonFunctionalities from './buttonshelper';
@@ -17,11 +20,20 @@ export function getCategories() {
   return category;
 }
 
+
+function displayCategoryTodos(index) {
+  selectedCategoryIndex = index;
+  todoList(index);
+  // displayTodos()
+  // addTodoBtn()
+  // addButtonFunctionalities();
+}
+
 export function toggleSelectedCategory() {
   const categories = document.querySelectorAll('.category');
   if (categories.length > 0) {
     categories[selectedCategoryIndex].classList.add('category-active');
-    categories.forEach((category) => {
+    categories.forEach((category, index) => {
       category.addEventListener('click', () => {
         const container = document.getElementById('container');
         categories.forEach(cat => {
@@ -30,7 +42,7 @@ export function toggleSelectedCategory() {
         });
         category.classList.add('category-active');
         // displayHeaders();
-        // displayCategoryTodos(index);
+        displayCategoryTodos(index);
       });
     });
   }
@@ -80,11 +92,3 @@ export default function createSidebar() {
   // addButtonFunctionalities();
   addCategoryBtn();
 }
-
-
-// function displayCategoryTodos(index) {
-//   selectedCategoryIndex = index;
-//   // displayTodos()
-//   // addTodoBtn()
-//   addButtonFunctionalities();
-// }

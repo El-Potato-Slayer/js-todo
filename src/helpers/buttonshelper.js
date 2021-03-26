@@ -10,16 +10,6 @@
 import removeChildren from './shared';
 
 
-// export function addTodoBtn() {
-//   const container = document.getElementById('container')
-//   const btn = document.querySelector('.todo-list button')
-//   btn.addEventListener('click', () => {
-//     removeChildren(container)
-//     createTodoForm()
-//     submitTodo('create')
-//   })
-// }
-
 // export function createCategory(){
 //   const container = document.getElementById('container')
 //   const catName = document.getElementById('categoryName')
@@ -106,7 +96,7 @@ import removeChildren from './shared';
 // }
 
 export default function addButtonFunctionalities() {
-  addCategoryBtn();
+  // addCategoryBtn();
   // updateCheckbox()
   // deleteTodoBtn()
   // editTodo()
