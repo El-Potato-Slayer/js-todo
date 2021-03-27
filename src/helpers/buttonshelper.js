@@ -44,25 +44,25 @@ import removeChildren from './shared';
 //   })
 // }
 
-// export function submitTodo(type){
-//   const btn = document.getElementById('todoSubmit')
-//   btn.onclick = () => {
-//     const container = document.getElementById('container')
-//     const categories = JSON.parse(localStorage.getItem('categories'))
-//     const inputs = document.querySelectorAll('.form input')
-//     const description = document.querySelector('textarea')
-//     const todo = new Todo(inputs[0].value, description.value, inputs[1].value, inputs[2].value)
-//     if (type === 'update') {
-//       categories[selectedCategoryIndex].todoList[selectedTodo] = todo
-//     }
-//     else if(type === 'create') {
-//       categories[selectedCategoryIndex].todoList.push(todo)
-//     }
-//     localStorage.setItem('categories', JSON.stringify(categories))
-//     removeChildren(container)
-//     todoList()
-//   }
-// }
+// // export function submitTodo(type){
+// //   const btn = document.getElementById('todoSubmit')
+// //   btn.onclick = () => {
+// //     const container = document.getElementById('container')
+// //     const categories = JSON.parse(localStorage.getItem('categories'))
+// //     const inputs = document.querySelectorAll('.form input')
+// //     const description = document.querySelector('textarea')
+// //     const todo = new Todo(inputs[0].value, description.value, inputs[1].value, inputs[2].value)
+// //     if (type === 'update') {
+// //       categories[selectedCategoryIndex].todoList[selectedTodo] = todo
+// //     }
+// //     else if(type === 'create') {
+// //       categories[selectedCategoryIndex].todoList.push(todo)
+// //     }
+// //     localStorage.setItem('categories', JSON.stringify(categories))
+// //     removeChildren(container)
+// //     todoList()
+// //   }
+// // }
 
 // export function deleteTodoBtn(){
 //   const categories = JSON.parse(localStorage.getItem('categories'))

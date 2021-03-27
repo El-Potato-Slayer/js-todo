@@ -56,24 +56,28 @@ export function getSelectedCategory() {
   return selectedCategoryIndex;
 }
 
-function addCategoryBtn() {
-  const container = document.getElementById('container');
-  const btn = document.querySelector('nav button');
-  btn.addEventListener('click', () => {
-    removeChildren(container);
-    createCategoryForm();
-    const submit = document.getElementById('submitCategory');
-    submit.onclick = () => {
-      const catName = document.getElementById('categoryName');
-      const categories = JSON.parse(localStorage.getItem('categories'));
-      createCategory(categories, catName);
-      const catLinks = document.querySelector('.cat-links');
-      removeChildren(catLinks);
-      catLinks.insertAdjacentHTML('afterbegin', getCategories());
-      setSelectedCategory(categories.length - 1);
-      toggleSelectedCategory();
-    };
-  });
+export function addCategoryBtn() {
+  // const container = document.getElementById('container');
+  // const btn = document.querySelector('nav button');
+  // btn.addEventListener('click', () => {
+  removeChildren(container);
+  createCategoryForm();
+  const submit = document.getElementById('submitCategory');
+  // submit.onclick = () => {
+
+  // };
+  // });
+}
+
+export function submitForm() {
+  const catName = document.getElementById('categoryName');
+  const categories = JSON.parse(localStorage.getItem('categories'));
+  createCategory(categories, catName);
+  const catLinks = document.querySelector('.cat-links');
+  removeChildren(catLinks);
+  catLinks.insertAdjacentHTML('afterbegin', getCategories());
+  setSelectedCategory(categories.length - 1);
+  toggleSelectedCategory();
 }
 
 export default function createSidebar() {
@@ -90,5 +94,5 @@ export default function createSidebar() {
 
   toggleSelectedCategory();
   // addButtonFunctionalities();
-  addCategoryBtn();
+  // addCategoryBtn();
 }
