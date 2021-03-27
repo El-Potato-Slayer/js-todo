@@ -1,11 +1,6 @@
 import createCategoryForm, { createCategory } from '../partials/categoryform';
-// import addButtonFunctionalities from './buttonshelper';
 import removeChildren from './shared';
 import todoList from '../components/todolist';
-// import displayHeaders from './todos';
-
-// import displayHeaders, { displayAllTodos, displayTodos } from "./todos";
-// import addButtonFunctionalities from './buttonshelper';
 
 let selectedCategoryIndex = 0;
 
@@ -20,16 +15,12 @@ export function getCategories() {
   return category;
 }
 
-
 function displayCategoryTodos(index) {
   selectedCategoryIndex = index;
   todoList(index);
-  // displayTodos()
-  // addTodoBtn()
-  // addButtonFunctionalities();
 }
 
-export function toggleSelectedCategory() {
+function toggleSelectedCategory() {
   const categories = document.querySelectorAll('.category');
   if (categories.length > 0) {
     categories[selectedCategoryIndex].classList.add('category-active');
@@ -41,7 +32,6 @@ export function toggleSelectedCategory() {
           removeChildren(container);
         });
         category.classList.add('category-active');
-        // displayHeaders();
         displayCategoryTodos(index);
       });
     });
@@ -57,16 +47,8 @@ export function getSelectedCategory() {
 }
 
 export function addCategoryBtn() {
-  // const container = document.getElementById('container');
-  // const btn = document.querySelector('nav button');
-  // btn.addEventListener('click', () => {
-  removeChildren(container);
+  removeChildren(document.getElementById('container'));
   createCategoryForm();
-  const submit = document.getElementById('submitCategory');
-  // submit.onclick = () => {
-
-  // };
-  // });
 }
 
 export function submitForm() {
@@ -93,6 +75,4 @@ export default function createSidebar() {
   container.insertAdjacentHTML('beforebegin', sidebar);
 
   toggleSelectedCategory();
-  // addButtonFunctionalities();
-  // addCategoryBtn();
 }

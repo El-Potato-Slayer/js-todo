@@ -1,24 +1,7 @@
-// import addButtonFunctionalities from '../helpers/buttonshelper';
-// import displayHeaders, { displayTodos } from '../helpers/todos';
-
 import createTodoForm, { submitTodo, prefillForm } from '../partials/todoform';
 import removeChildren from '../helpers/shared';
 
-let todoIndex = 0;
-
-// function btn() {
-//   const addCatBtn = document.querySelector('button');
-//   addCatBtn.onclick = () => {
-//     const submit = document.getElementById('submitCategory');
-//     submit.onclick = () => {
-//       removeChildren(document.getElementById('container'));
-//       displayHeaders();
-//       displayTodos();
-//     };
-//   };
-// }
-
-export function displayHeaders() {
+function displayHeaders() {
   const header = `
     <div class="py-2 grid grid-cols-3 max-w-2xl mx-auto">
       <p class="justify-self-center">Title</p>
@@ -29,7 +12,7 @@ export function displayHeaders() {
   document.getElementById('container').insertAdjacentHTML('afterbegin', header);
 }
 
-export function displayTodos(categoryIndex) {
+function displayTodos(categoryIndex) {
   const categories = JSON.parse(localStorage.getItem('categories'));
   let todos = '';
   if (categories[categoryIndex]) {
@@ -53,10 +36,9 @@ export function displayTodos(categoryIndex) {
   const wrapper = document.getElementById('container').appendChild(document.createElement('div'));
   wrapper.classList.add('todo-list');
   wrapper.insertAdjacentHTML('afterbegin', todos);
-  // addTodo();
 }
 
-export function deleteTodoBtn(categoryIndex) {
+function deleteTodoBtn(categoryIndex) {
   const categories = JSON.parse(localStorage.getItem('categories'));
   const dltBtns = document.querySelectorAll('.remove');
   if (categories.length !== 0) {
@@ -71,7 +53,7 @@ export function deleteTodoBtn(categoryIndex) {
   }
 }
 
-export function updateCheckbox(categoryIndex) {
+function updateCheckbox(categoryIndex) {
   const categories = JSON.parse(localStorage.getItem('categories'));
   const chkboxes = document.querySelectorAll('.todo-chkbox');
   const todoWrapper = document.querySelectorAll('.todo-wrapper');
@@ -85,7 +67,7 @@ export function updateCheckbox(categoryIndex) {
   });
 }
 
-export function editTodo(categoryIndex) {
+function editTodo(categoryIndex) {
   const categories = JSON.parse(localStorage.getItem('categories'));
   const editBtns = document.querySelectorAll('.edit');
   if (categories.length !== 0) {
@@ -95,23 +77,23 @@ export function editTodo(categoryIndex) {
         removeChildren(document.getElementById('container'));
         createTodoForm();
         prefillForm(todos[index]);
-        todoIndex = index;
         const submit = document.getElementById('todoSubmit');
         submit.onclick = () => {
           submitTodo('update', categoryIndex, index);
-          displayHeaders();
-          displayTodos(categoryIndex);
-          addTodo(categoryIndex);
-          updateCheckbox(categoryIndex);
-          deleteTodoBtn(categoryIndex);
-          editTodo(categoryIndex);
+          todoList(categoryIndex)
+          // displayHeaders();
+          // displayTodos(categoryIndex);
+          // addTodo(categoryIndex);
+          // updateCheckbox(categoryIndex);
+          // deleteTodoBtn(categoryIndex);
+          // editTodo(categoryIndex);
         };
       });
     });
   }
 }
 
-export function addTodo(categoryIndex) {
+function addTodo(categoryIndex) {
   const container = document.getElementById('container');
   const btn = document.querySelector('.todo-list button');
   btn.addEventListener('click', () => {
@@ -120,12 +102,7 @@ export function addTodo(categoryIndex) {
     const submit = document.getElementById('todoSubmit');
     submit.onclick = () => {
       submitTodo('create', categoryIndex);
-      displayHeaders();
-      displayTodos(categoryIndex);
-      addTodo(categoryIndex);
-      updateCheckbox(categoryIndex);
-      deleteTodoBtn(categoryIndex);
-      editTodo(categoryIndex);
+      todoList(categoryIndex)
     };
   });
 }
@@ -134,11 +111,8 @@ export function addTodo(categoryIndex) {
 export default function todoList(categoryIndex) {
   displayHeaders();
   displayTodos(categoryIndex);
-  // addButtonFunctionalities();
   addTodo(categoryIndex);
   updateCheckbox(categoryIndex);
   deleteTodoBtn(categoryIndex);
   editTodo(categoryIndex);
-  // idk();
-  // btn();
 }

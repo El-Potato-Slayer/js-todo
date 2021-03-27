@@ -1,4 +1,3 @@
-// import { submitTodo } from "../helpers/buttonshelper"
 import removeChildren from '../helpers/shared';
 import Todo from '../todo';
 
@@ -32,8 +31,6 @@ export function prefillForm(todo) {
 }
 
 export function submitTodo(type, categoryIndex, selectedTodo) {
-  // const btn = document.getElementById('todoSubmit');
-  // btn.onclick = () => {
   const container = document.getElementById('container');
   const categories = JSON.parse(localStorage.getItem('categories'));
   const inputs = document.querySelectorAll('.form input');
