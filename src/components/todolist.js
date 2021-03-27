@@ -80,7 +80,7 @@ function editTodo(categoryIndex) {
         const submit = document.getElementById('todoSubmit');
         submit.onclick = () => {
           submitTodo('update', categoryIndex, index);
-          todoList(categoryIndex)
+          todoList(categoryIndex);
           // displayHeaders();
           // displayTodos(categoryIndex);
           // addTodo(categoryIndex);
@@ -102,7 +102,7 @@ function addTodo(categoryIndex) {
     const submit = document.getElementById('todoSubmit');
     submit.onclick = () => {
       submitTodo('create', categoryIndex);
-      todoList(categoryIndex)
+      todoList(categoryIndex);
     };
   });
 }
