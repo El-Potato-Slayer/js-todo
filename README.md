@@ -13,7 +13,7 @@ The objective is to create a web application that allows you to create categorie
 
 ## Getting started
 
-**To get this project set up on your local machine, follow these simple steps:**
+**To get this project set up on your local machine, follow these steps:**
 
 1. Open Terminal.
 2. Navigate to your desired location to download the contents of this repository.
@@ -23,6 +23,11 @@ The objective is to create a web application that allows you to create categorie
 6. Run `npm run build`
 7. Run `cd dist`
 8. Right click on `index.html`, and open the file with a browser or a local server.
+
+**To run the tests, follow these steps:
+1. Ensure you are in the project root directory
+2. Ensure you ran `npm install`
+3. run `npm run test`
 
 ## Authors
 
