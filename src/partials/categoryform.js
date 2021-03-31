@@ -1,5 +1,3 @@
-// import { createCategory } from '../helpers/buttonshelper';
-
 import removeChildren from '../helpers/shared';
 import Category from '../category';
 

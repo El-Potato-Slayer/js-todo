@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,10 +18,16 @@
   },
   "homepage": "https://github.com/El-Potato-Slayer/js-restaurant#readme",
   "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-transform-async-to-generator": "^7.13.0",
+    "@babel/preset-env": "^7.13.12",
+    "babel": "^6.23.0",
     "babel-eslint": "10.1.x",
     "eslint": "6.8.x",
     "eslint-config-airbnb-base": "14.1.x",
     "eslint-plugin-import": "2.20.x",
+    "jest": "^26.6.3",
     "webpack": "^5.26.3",
     "webpack-cli": "^4.5.0"
   }
