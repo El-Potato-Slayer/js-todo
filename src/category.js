@@ -11,4 +11,8 @@ export default class Category {
   update(todo, index) {
     this.todoList[index] = todo;
   }
+
+  delete(index) {
+    this.todoList.splice(index, 1);
+  }
 }
