@@ -1,14 +1,15 @@
-# Restaurant
-The objective is to create a single page application with a navigation that load specific content without having to refresh the page. The code is written is JavaScript modules in order to separate logic and make the code more maintainable.
+# Task list
+The objective is to create a web application that allows you to create categories and add tasks within those categories. The categories and tasks are stored within the browser's memory.
 
-![image](https://user-images.githubusercontent.com/43865875/111696556-1fa19d80-883d-11eb-9697-fd7c80f0be37.png)
+![image](https://user-images.githubusercontent.com/43865875/112733872-1a360880-8f4b-11eb-92ae-4ded38805f95.png)
 
-[Live Demo](https://raw.githack.com/El-Potato-Slayer/js-restaurant/feature/dist/index.html)
+[Live Demo](https://raw.githack.com/El-Potato-Slayer/js-todo/todo-creation/dist/index.html)
 
 ## Built with
 - HTML
 - CSS
 - JavaScript
+- Webpack
 
 ## Getting started
 
@@ -16,10 +17,12 @@ The objective is to create a single page application with a navigation that load
 
 1. Open Terminal.
 2. Navigate to your desired location to download the contents of this repository.
-3. Run `git clone https://github.com/El-Potato-Slayer/js-restaurant.git`.
-4. Run `cd js-restaurant` or open the `js-restaurant` folder using your file explorer.
-5. Run `cd dist` or open the `dist` folder using your file explorer
-6. Right click on `index.html` and open with a browser.
+3. Run `git clone https://github.com/El-Potato-Slayer/js-todo.git`.
+4. Run `cd js-todo` or open the `js-todo` folder using your file explorer.
+5. Run `npm install`
+6. Run `npm run build`
+7. Run `cd dist`
+8. Right click on `index.html`, and open the file with a browser or a local server.
 
 ## Authors
 
